@@ -1,0 +1,12 @@
+for flower
+
+celery -A myshop flower
+
+http://localhost:5555/dashboard
+
+for celery
+celery -A myshop worker -l info
+
+for rabittmq
+
+rabbitmq-server
