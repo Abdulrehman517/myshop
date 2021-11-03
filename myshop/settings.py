@@ -1,3 +1,4 @@
+
 import os
 from pathlib import Path
 
@@ -29,10 +30,12 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'orders',
+    'payment',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -125,3 +128,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # CART_SESSION_ID = 'cart'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'c3bs7zz3w9cvd9rs' # Merchant ID
+BRAINTREE_PUBLIC_KEY = '5w4s2hs6k7ctnfgd' # Public Key
+BRAINTREE_PRIVATE_KEY = '37de4a0644b5c06fde5140d52b5431ad' # Private key
+
+import braintree
+
+BRAINTREE_CONF = braintree.Configuration(braintree.Environment.Sandbox, BRAINTREE_MERCHANT_ID,BRAINTREE_PUBLIC_KEY, BRAINTREE_PRIVATE_KEY)
+
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
